@@ -1,4 +1,4 @@
-const {createThePlayingBoard, playerTakesHisTurn} = require('../src/template');
+const {createThePlayingBoard, playerTakesHisTurn, switchCurrentPlayer, checkHorizontalLineForWinner, checkVerticalLineForWinner} = require('../src/template');
 
 describe('This is a testsuite for a game called TicTacToe.', () => {
     describe('Before the game starts, we need to have a board to play on', () => {
@@ -44,8 +44,42 @@ describe('This is a testsuite for a game called TicTacToe.', () => {
     describe('Players should switch turns', () => {
         it('Player X played, player O is the next player', () => {
             var currentPlayer = 'X'
-            switchCurrentPlayer(currentPlayer)
-            expect(currentPlayer).toEqual('O')
+            var currentPlayerAfterTurn = switchCurrentPlayer(currentPlayer)
+            expect(currentPlayerAfterTurn).toEqual('O')
+        });
+        it('Player O played, player X is the next player', () => {
+            var currentPlayer = 'O'
+            var currentPlayerAfterTurn = switchCurrentPlayer(currentPlayer)
+            expect(currentPlayerAfterTurn).toEqual('X')
+        });
+    });
+    describe('When a horizontal line contains the same marks, a player has won', () => {
+        it('First row ⏩ is filled with X marks --> X wins ', () => {
+            var ticTacToeBoard = ['X', 'X', 'X', '', '', '', '', '', '']
+            expect(checkHorizontalLineForWinner(ticTacToeBoard, 'X')).toEqual('Player X has won')
+        });
+        it('Second row ⏩ is filled with O marks --> O wins ', () => {
+            var ticTacToeBoard = ['', '', '', 'O', 'O', 'O', '', '', '']
+            expect(checkHorizontalLineForWinner(ticTacToeBoard, 'O')).toEqual('Player O has won')
+        });
+        it('Third row ⏩ is filled with X marks --> X wins ', () => {
+            var ticTacToeBoard = ['', '', '', '', '', '', 'X', 'X', 'X']
+            expect(checkHorizontalLineForWinner(ticTacToeBoard, 'X')).toEqual('Player X has won')
+        });
+
+    });
+    describe('When a vertical line contains the same marks, a player has won', () => {
+        it('First row ⏬ filled with X marks -> X wins', () => {
+            var ticTacToeBoard = ['X', '', '', 'X', '', '', 'X', '', '']
+            expect(checkVerticalLineForWinner(ticTacToeBoard, 'X')).toEqual('Player X has won')
+        });
+        it('Second row ⏬ filled with O marks -> O wins', () => {
+            var ticTacToeBoard = ['', 'O', '', '', 'O', '', '', 'O', '']
+            expect(checkVerticalLineForWinner(ticTacToeBoard, 'O')).toEqual('Player O has won')
+        });
+        it('Third row ⏬ filled with O marks -> O wins', () => {
+            var ticTacToeBoard = ['', '', 'O', '', '', 'O', '', '', 'O']
+            expect(checkVerticalLineForWinner(ticTacToeBoard, 'O')).toEqual('Player O has won')
         });
     });
 });
