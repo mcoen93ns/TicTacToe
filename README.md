@@ -13,7 +13,6 @@ The game will start with player X
 Atomic behaviors:
 - Creating an empty board
 - Printing the board in the log
-- Determining if player X or O starts
 
 2 – Player X won with a vertical line
 Player X:
@@ -70,23 +69,29 @@ Atomic behaviors identified:
 
 Overview of atomic behaviors:
 ✔ - Creating an empty board
-    ✔ - Valid board: [0,1,2,3,4,5,6,7,8]
+    ✔ - Valid board: ['','','','','','','','','']
 
 - Printing the board in the log
-    - Valid board -> print in log ->
+⛔- Valid board -> print in log -> NO CLUE ON HOW TO DO THIS
                     | |
                     -+-+-
                     | |
                     -+-+-
                     | |
-
-- Determining if player X or O starts
-    - Random outcome: X
-    - Random outcome: Y
 
 - Player can place his mark in a cell
+   ✔ - ['','','','','','','','',''] -> Player X -> ['X','','','','','','','','']
+   ✔ - ['','','','','','','','',''] -> Player O -> ['O','','','','','','','','']
+   ✔ - ['','','','','','','','',''] -> Player X, cell 5 -> ['','','','','X','','','','']
+
 - Player can only place his mark in an empty cell
+   ✔ - ['X','','','','','','','',''] -> Player O, cell 1 -> false
+   ✔ - ['','','O','','','','','',''] -> Player X, cell 3 -> false
+
 - Players take turns
+    🛠- X -> O
+    - O -> X
+
 - Determining that a vertical line is filled with one player's symbols --> win
 - Determining that a horizontal line is filled with one player's symbols --> win
 - Determining that a diagonal line is filled with one player's symbols --> win
