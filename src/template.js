@@ -3,8 +3,11 @@ function createThePlayingBoard(ticTacToeBoard) {
     return ticTacToeBoard
 }
 
-function printTheBoardInTheLog(ticTacToeBoard){
-    return false
+function playerTakesHisTurn(ticTacToeBoard, player, cell) {
+    if (ticTacToeBoard[cell] == '') {
+        ticTacToeBoard[cell] = player
+        return ticTacToeBoard
+    } else return false
 }
 
-module.exports = createThePlayingBoard, printTheBoardInTheLog;
+module.exports = {createThePlayingBoard, playerTakesHisTurn};
