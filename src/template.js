@@ -1,5 +1,10 @@
-function templateFunction(x) {
-    return x / 2
+function createThePlayingBoard(ticTacToeBoard) {
+    ticTacToeBoard = ['', '', '', '', '', '', '', '', ''];
+    return ticTacToeBoard
 }
 
-module.exports = templateFunction
+function printTheBoardInTheLog(ticTacToeBoard){
+    return false
+}
+
+module.exports = createThePlayingBoard, printTheBoardInTheLog;
